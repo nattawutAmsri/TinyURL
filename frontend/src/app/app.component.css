@@ -1,0 +1,23 @@
+.ply-container {
+    padding: 30px;
+    background: rgba(255, 255, 255, .5)
+}
+
+.text-url {
+    color: orangered;
+    font-weight: bold;
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
+.margin-bottom {
+    margin-bottom: 15px;
+}
+.margin-left {
+    margin-left: 15px;
+}
+.margin-ritgh {
+    margin-right: 15px;
+}

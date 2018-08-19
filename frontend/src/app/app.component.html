@@ -1,0 +1,18 @@
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <form class="col-12 ply-container">  
+      <div class="form-group text-center" style="padding:30px;">
+          <h1 class="margin">Tiny url</h1>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Enter url" class="form-control"  name="originalUrl" [(ngModel)]="form.originalUrl" #originalUrl="ngModel">
+      </div>
+      <div class="form-group">
+        <p class="text-url">URL: {{form.shortUrl}}</p>
+      </div>
+      <div class="form-group text-center">
+          <button class="btn btn-primary btn-lg" (click)="onClickGenerate()">Generate</button>
+      </div>
+    </form>
+  </div>
+</div>
