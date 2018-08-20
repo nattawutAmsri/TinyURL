@@ -1,11 +1,23 @@
 version: "3"
 
 services:
+  server-database:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:27017"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
   client:
     container_name: frontend
     build: ./frontend
     ports:
       - 4200:4200
+    restart: always
     volumes:
       - ./frontend:/data
     environment:
@@ -14,16 +26,11 @@ services:
     build: ./backend
     ports:
       - 8081:8081
+    restart: always
     volumes:
       - ./backend:/data
     depends_on: 
       - server-database
     environment:
       - DATABASE_URL=server-database:27017
-    
-  server-database:
-    image: mongo
-    ports:
-      - 27017:27017
-    volumes:
-      - ./db:/data/db
+  

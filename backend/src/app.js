@@ -5,11 +5,13 @@ const logger = require('morgan');
 const constants = require("./config/constants");
 
 //Connect to MongoDB
+mongoose.Promise = global.Promise;
 mongoose.connect(constants.dbConnection, {
   keepAlive: true,
   useNewUrlParser: true,
+  reconnectTries: 30
 });
-mongoose.Promise = global.Promise;
+
 require('./tinyUrl/model');
 
 const db = mongoose.connection;
