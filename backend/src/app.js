@@ -9,7 +9,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect(constants.dbConnection, {
   keepAlive: true,
   useNewUrlParser: true,
-  reconnectTries: 30
+  useMongoClient: true,
+  reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
 });
 
 require('./tinyUrl/model');
@@ -18,11 +19,11 @@ const db = mongoose.connection;
 db.on('error', err => {
   console.error(`Error while connecting to DB: ${err.message}`);
 });
+
 db.once('open', () => {
   console.log('DB connected successfully!');
 });
 // End connect db
-
 
 // this will set allow accept domain
 const app = express();
@@ -41,8 +42,6 @@ app.use(function(req, res, next) {
     next();
   }
 });
-
+// route here
 require("./tinyUrl/controller")(app);
-
-
 app.listen(process.env.PORT || 8081)
