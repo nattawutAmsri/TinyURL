@@ -14,6 +14,7 @@ mongoose.connect(constants.dbConnection, {
 });
 
 require('./tinyUrl/model');
+require('./note/model');
 
 const db = mongoose.connection;
 db.on('error', err => {
@@ -44,4 +45,5 @@ app.use(function(req, res, next) {
 });
 // route here
 require("./tinyUrl/controller")(app);
+require("./note/controller")(app);
 app.listen(process.env.PORT || 8081)
